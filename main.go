@@ -125,14 +125,11 @@ func checkingDevice(deivceID string, deviceType string, token string) (bool, str
 
 func init() {
 	clientOptions := options.Client().ApplyURI("mongodb://127.0.0.1:27017/smartFM")
-	// Connect to MongoDB
 	var err error
 	client, err = mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	// Check the connection
 	err = client.Ping(context.TODO(), nil)
 	if err != nil {
 		log.Fatal(err)
