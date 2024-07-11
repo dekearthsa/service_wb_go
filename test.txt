@@ -1,0 +1,1 @@
+mosquitto_pub  -h localhost -p 1883 -t  go-mqtt/sample -m '{"deviceID":"occ-device", "deviceType":"occ", "token":"f2zuiw1t", "data":{"state": 0}}' 
