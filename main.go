@@ -266,11 +266,13 @@ func occupanyState(system string) (bool, error) {
 	if !ok {
 		fmt.Println("error get TimeRemaining in func occupanyState.")
 	}
+	// fmt.Println("ms => ", ms, " ", "int64(setTime) => ", int64(setTime))
+	// fmt.Print("Bool => ", int64(setTime) <= ms)
 	if int64(setTime) <= ms {
 		return true, nil
+	} else {
+		return false, nil
 	}
-
-	return false, nil
 }
 
 func operatLogic(
@@ -312,7 +314,7 @@ func operatLogic(
 			return isCommand, err
 		}
 		// fmt.Println("isEnd 1 => ", isEnd)
-		if !isEnd {
+		if isEnd {
 			setStringCommand = append(setStringCommand, "WB_EXHAUST_FAN")
 			setStringCommand = append(setStringCommand, "WB_SUPPLY_FAN_HIGH")
 			command, errStatus, err := createCommand(system, setStringCommand, token, false)
@@ -347,7 +349,7 @@ func operatLogic(
 			log.Panic(err)
 			return isCommand, err
 		}
-		if !isEnd {
+		if isEnd {
 			setStringCommand = append(setStringCommand, "WB_EXHAUST_FAN")
 			setStringCommand = append(setStringCommand, "WB_SUPPLY_FAN_HIGH")
 			command, errStatus, err := createCommand(system, setStringCommand, token, false)
