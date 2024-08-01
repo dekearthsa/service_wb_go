@@ -1,0 +1,20 @@
+version: '3.7'
+
+volumes:
+  database:
+    external: true
+
+services:
+  service_go_wb:
+    container_name: service_go_wb
+    build:
+      context: "./"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - net
+
+networks:
+  net:
+    external: true
+    driver: bridge
